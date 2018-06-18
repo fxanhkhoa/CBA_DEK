@@ -25,6 +25,10 @@ public class Chat_Client extends JFrame{
   private JButton btn_Send = new JButton("Send");
   private JTextField TextShow = new JTextField("Chat Box");
   private JTextField TextSend = new JTextField("Text Send");
+
+  private JTextField Server_IP_Text = new JTextField("Ip of server");
+  private JButton btn_Connect = new JButton("Connect");
+
   String  s ="Chat_Box";
   private JTextArea AreaText = new JTextArea(s);
   JScrollPane scrollPane;
@@ -40,7 +44,7 @@ public class Chat_Client extends JFrame{
 
   public Chat_Client(){
     setTitle("Chat_Client");
-    setSize(400,400);
+    setSize(400,450);
     setLocation(new Point(300,200));
     setLayout(null);
     setResizable(false);
@@ -63,10 +67,15 @@ public class Chat_Client extends JFrame{
     AreaText.setLineWrap(true);
     scrollPane = new JScrollPane(AreaText,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     scrollPane.setBounds(10,10,300,250);
+
+    btn_Connect.setBounds(290,350,100,25);
+    Server_IP_Text.setBounds(10,350,250,25);
     add(btn_Send);
     //add(TextShow);
     add(TextSend);
     add(scrollPane);
+    add(btn_Connect);
+    add(Server_IP_Text);
     //add(AreaText);
     //pack();
   }
