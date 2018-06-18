@@ -1,3 +1,3 @@
 echo Main-Class: HelloWorld >manifest.txt   (Tên của class chính)
 
-jar cvfm Craps.jar manifest.txt *.class   (Craps là tên file Jar, * là tên class chính)
+jar cvfm Craps.jar manifest.txt *.class   (Craps a là tên file Jar, * là tên class chính)
