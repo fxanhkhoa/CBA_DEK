@@ -29,13 +29,13 @@ public class Chat_Client extends JFrame{
   private JTextField TextShow = new JTextField("Chat Box");
   private JTextField TextSend = new JTextField("Text Send");
 
-  private static JTextField Server_IP_Text = new JTextField("Ip of server");
+  private static JTextField Server_IP_Text = new JTextField("127.0.0.1");
   private JButton btn_Connect = new JButton("Connect");
 
 
-  String  string ="Chat_Box";
-  private JTextArea AreaText = new JTextArea(string);
-  JScrollPane scrollPane;
+  private static String string ="Chat_Box";
+  private static JTextArea AreaText = new JTextArea(string);
+  private static JScrollPane scrollPane;
 
   final static int ServerPort = 22;
   private static InetAddress ip;
@@ -44,11 +44,13 @@ public class Chat_Client extends JFrame{
   private static DataInputStream dis;
   private static DataOutputStream dos;
 
-  public static void main(String[] args){
+  static Thread readMessage;
+  static RecieveThread _R;
+
+  public static void main(String[] args) throws UnknownHostException, IOException {
     Chat_Client f = new Chat_Client();
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setVisible(true);
-
 
     /*Thread sendMessage = new Thread(new Runnable()
     {
@@ -146,8 +148,42 @@ public class Chat_Client extends JFrame{
 
         TextSend.setEditable(true);
 
+        _R = new RecieveThread(s);
+        readMessage = new Thread(_R);
+        readMessage.start();
+
       } catch (IOException e){
         e.printStackTrace();
       }
+  }
+}
+
+class RecieveThread implements Runnable
+{
+  Socket sock = null;
+  DataInputStream dis = null;
+
+  public RecieveThread(Socket sock)
+  {
+    this.sock = sock;
+  }
+
+  public void run(){
+
+      while(true){
+        try{
+          dis = new DataInputStream(sock.getInputStream());
+          // Read Message then send to JTextField
+          char msg;
+          //while ((msg = dis.readLine()) == null);
+          msg = (char)dis.read();
+          System.out.print(msg);
+          //AreaText.append(msg);
+          //scrollPane.add(AreaText);
+        } catch (IOException e){
+          e.printStackTrace();
+        }
+      }
+
   }
 }
