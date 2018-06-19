@@ -19,6 +19,9 @@ import java.io.*;
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
+import java.net.*;
+import java.util.Scanner;
 
 public class Chat_Client extends JFrame{
 
@@ -26,20 +29,43 @@ public class Chat_Client extends JFrame{
   private JTextField TextShow = new JTextField("Chat Box");
   private JTextField TextSend = new JTextField("Text Send");
 
-  private JTextField Server_IP_Text = new JTextField("Ip of server");
+  private static JTextField Server_IP_Text = new JTextField("Ip of server");
   private JButton btn_Connect = new JButton("Connect");
 
-  String  s ="Chat_Box";
-  private JTextArea AreaText = new JTextArea(s);
+
+  String  string ="Chat_Box";
+  private JTextArea AreaText = new JTextArea(string);
   JScrollPane scrollPane;
+
+  final static int ServerPort = 22;
+  private static InetAddress ip;
+  private static String IP_Text;
+  private static Socket s;
+  private static DataInputStream dis;
+  private static DataOutputStream dos;
 
   public static void main(String[] args){
     Chat_Client f = new Chat_Client();
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    //f.setLayout(new FlowLayout());
-    //f.pack();
     f.setVisible(true);
-    //new Chat_Client();
+
+
+    /*Thread sendMessage = new Thread(new Runnable()
+    {
+      @Override
+      public void run(){
+        while (true) {
+          try{
+            String text = TextSend.getText();
+            dos.writeUTF(text);
+          } catch (IOException e){
+            e.printStackTrace();
+          }
+        }
+      }
+    });*/
+
+    //sendMessage.start();
   }
 
   public Chat_Client(){
@@ -77,7 +103,7 @@ public class Chat_Client extends JFrame{
     add(btn_Connect);
     add(Server_IP_Text);
     //add(AreaText);
-    //pack();
+    TextSend.setEditable(false);
   }
 
   private void initEvent(){
@@ -86,9 +112,42 @@ public class Chat_Client extends JFrame{
         btn_SendClick(e);
       }
     });
+
+    btn_Connect.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e){
+        btn_ConnectClick(e);
+      }
+    });
   }
 
   private void btn_SendClick(ActionEvent evt){
-    System.exit(0);
+    //System.exit(0);
+    try{
+      String text = TextSend.getText();
+      dos.writeUTF(text);
+    } catch (IOException e){
+      e.printStackTrace();
+    }
+  }
+
+    private void btn_ConnectClick(ActionEvent evt){
+      //System.exit(0);
+      try{
+        // geting localhost ip
+        IP_Text = Server_IP_Text.getText();
+        ip = InetAddress.getByName(IP_Text);
+
+        // Establish the connection
+        s = new Socket(ip, ServerPort);
+
+        // Obtaining input and out streams
+        dis = new DataInputStream(s.getInputStream());
+        dos = new DataOutputStream(s.getOutputStream());
+
+        TextSend.setEditable(true);
+
+      } catch (IOException e){
+        e.printStackTrace();
+      }
   }
 }
