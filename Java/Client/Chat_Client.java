@@ -161,7 +161,7 @@ private void btn_ConnectClick(ActionEvent evt){
                                                 //while ((msg =(char) dis.read()) == '');
                                                 msg = dis.readLine();
                                                 System.out.print(msg);
-                                                AreaText.append("" + msg);
+                                                AreaText.append("" + msg + "\n");
                                                 scrollPane.add(AreaText);
                                         } catch (IOException e) {
                                                 e.printStackTrace();
