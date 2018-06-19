@@ -157,9 +157,9 @@ private void btn_ConnectClick(ActionEvent evt){
 
                                         try{
                                                 // Read Message then send to JTextField
-                                                char msg;
+                                                String msg;
                                                 //while ((msg =(char) dis.read()) == '');
-                                                msg = (char)dis.read();
+                                                msg = dis.readLine();
                                                 System.out.print(msg);
                                                 AreaText.append("" + msg);
                                                 scrollPane.add(AreaText);
