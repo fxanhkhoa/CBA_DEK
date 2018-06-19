@@ -1,0 +1,3 @@
+/home/ubuntu/Documents/CBA_DEK/Chat_Service/Server/CMakeFiles/edit_cache.dir
+/home/ubuntu/Documents/CBA_DEK/Chat_Service/Server/CMakeFiles/Server.dir
+/home/ubuntu/Documents/CBA_DEK/Chat_Service/Server/CMakeFiles/rebuild_cache.dir

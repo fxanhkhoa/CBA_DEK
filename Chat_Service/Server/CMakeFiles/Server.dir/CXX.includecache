@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ubuntu/Documents/CBA_DEK/Chat_Service/Server/src/Server.cpp
+Server.h
+/home/ubuntu/Documents/CBA_DEK/Chat_Service/Server/src/Server.h
+
+/home/ubuntu/Documents/CBA_DEK/Chat_Service/Server/src/main.cpp
+iostream
+-
+
+include/Server.h
+unistd.h
+-
+stdio.h
+-
+sys/socket.h
+-
+stdlib.h
+-
+netinet/in.h
+-
+string.h
+-
+
