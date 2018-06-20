@@ -127,7 +127,7 @@ private void btn_SendClick(ActionEvent evt){
         try{
                 String text = TextSend.getText();
                 dos.writeUTF(text);
-		//dos.writeShort(5);
+                //dos.writeShort(5);
         } catch (IOException e) {
                 e.printStackTrace();
         }
@@ -161,22 +161,22 @@ private void btn_ConnectClick(ActionEvent evt){
                                                 String msg ="";
                                                 //while ((msg =(char) dis.read()) == '');
                                                 msg = dis.readLine();
-						if (msg != null){
-							msg.trim();
-							msg.replace("null","");
-                                                	System.out.print(msg);
-							System.out.print(msg);
-                                                	AreaText.append("" + msg + "\n");
-                                                	//scrollPane.add(AreaText);
-						}
-						if (msg == null){
-							System.out.print("server died\n");
-							readMessage.stop();
-						}
+                                                if (msg != null) {
+                                                        msg.trim();
+                                                        msg.replace("null","");
+                                                        System.out.print(msg);
+                                                        System.out.print(msg);
+                                                        AreaText.append("" + msg + "\n");
+                                                        //scrollPane.add(AreaText);
+                                                }
+                                                if (msg == null) {
+                                                        System.out.print("server died\n");
+                                                        readMessage.stop();
+                                                }
                                         } catch (IOException e) {
                                                 e.printStackTrace();
                                         }
-				//System.out.print("out\n");
+                                        //System.out.print("out\n");
                                 }
                         }
                 });
