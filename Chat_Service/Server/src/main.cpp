@@ -1,40 +1,46 @@
-#include <iostream>
 #include "Server.h"
+#include <iostream>
 #include <pthread.h>
 
 using namespace std;
 
 #define NUM_THREADS 5
 
+#define ACTIVE 1
+
 /* function prototype */
 void *run_thread_ss(void *threadid);
 void *run_thread_sc(void *threadid);
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
   pthread_t threads;
   int rc;
   int i;
 
   rc = pthread_create(&threads, NULL, run_thread_sc, (void *)i);
 
-  if (rc)
-  {
-    cout << "Error: Unable to create thread, "<< rc << endl;
+  if (rc) {
+    cout << "Error: Unable to create thread, " << rc << endl;
     exit(-1);
   }
   pthread_exit(NULL);
   return 0;
 }
 
+void *run_thread_ss(void *threadid) {
 
-void *run_thread_ss(void *threadid)
-{
+  // For Main Server
+  #if (ACTIVE)
+
+  // For Backup Server
+  #else
+
+  #endif
+
 
 }
 
-void *run_thread_sc(void *threadid)
-{
+void *run_thread_sc(void *threadid) {
   long tid;
   tid = (long)threadid;
   Server _Server;

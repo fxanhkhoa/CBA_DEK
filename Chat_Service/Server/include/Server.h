@@ -1,17 +1,17 @@
 #ifndef _SERVER_H
 #define _SERVER_H
 
-#include <unistd.h>
-#include <stdio.h>
-#include <sys/socket.h>
-#include <stdlib.h>
-#include <netinet/in.h>
-#include <string.h>
 #include <arpa/inet.h>
 #include <errno.h>
-#include <sys/types.h>
-#include <sys/time.h>
 #include <iostream>
+#include <netinet/in.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <unistd.h>
 #include <vector>
 
 using namespace std;
@@ -20,8 +20,7 @@ using namespace std;
 #define FALSE 0
 #define PORT 1234
 
-class Server
-{
+class Server {
 public:
   int server_fd;
   int new_socket;
@@ -40,9 +39,9 @@ public:
   int sd;
   int activity;
 
-  vector <struct sockaddr_in> client_addr;
+  vector<struct sockaddr_in> client_addr;
 
-/* function */
+  /* function */
   Server();
   ~Server();
   void Create_Master_Socket();
