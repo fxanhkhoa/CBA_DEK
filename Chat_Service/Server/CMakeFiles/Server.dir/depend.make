@@ -5,4 +5,5 @@ CMakeFiles/Server.dir/src/Server.cpp.o: src/Server.cpp
 CMakeFiles/Server.dir/src/Server.cpp.o: include/Server.h
 
 CMakeFiles/Server.dir/src/main.cpp.o: src/main.cpp
+CMakeFiles/Server.dir/src/main.cpp.o: include/Server.h
 

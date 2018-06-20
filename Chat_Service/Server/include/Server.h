@@ -12,12 +12,13 @@
 #include <sys/types.h>
 #include <sys/time.h>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 #define TRUE 1
 #define FALSE 0
-#define PORT 22
+#define PORT 1234
 
 class Server
 {
@@ -27,13 +28,19 @@ public:
   int valread;
   struct sockaddr_in address;
   int addrlen = sizeof(address);
-  char buffer[1024] = {0};
-  char *hello = "Hello from server";
+  char buffer[1024];
+  string t;
+  char *message = "Hello from server \n";
   fd_set readfds;
   int client_socket[30];
   int master_socket;
   int opt = TRUE;
   int max_sd;
+  int max_clients = 30;
+  int sd;
+  int activity;
+
+  vector <struct sockaddr_in> client_addr;
 
 /* function */
   Server();
@@ -44,7 +51,7 @@ public:
   void Bind_Socket();
   void Specify_Pending();
   void Accept_Incoming();
-  void Start_Run();
+  int Start_Run();
 };
 
 #endif

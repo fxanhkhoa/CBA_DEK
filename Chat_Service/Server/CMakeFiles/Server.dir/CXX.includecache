@@ -13,6 +13,8 @@ Server.h
 /home/ubuntu/Documents/CBA_DEK/Chat_Service/Server/src/main.cpp
 iostream
 -
+Server.h
+/home/ubuntu/Documents/CBA_DEK/Chat_Service/Server/src/Server.h
 
 include/Server.h
 unistd.h
@@ -36,5 +38,7 @@ sys/types.h
 sys/time.h
 -
 iostream
+-
+vector
 -
 

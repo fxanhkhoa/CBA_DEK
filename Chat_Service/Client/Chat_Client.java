@@ -29,7 +29,7 @@ private JButton btn_Send = new JButton("Send");
 private JTextField TextShow = new JTextField("Chat Box");
 private JTextField TextSend = new JTextField("Text Send");
 
-private static JTextField Server_IP_Text = new JTextField("127.0.0.1");
+private static JTextField Server_IP_Text = new JTextField("10.0.3.101");
 private JButton btn_Connect = new JButton("Connect");
 
 
@@ -37,7 +37,7 @@ private static String string ="Chat_Box";
 private static JTextArea AreaText = new JTextArea(string);
 private static JScrollPane scrollPane;
 
-final static int ServerPort = 22;
+final static int ServerPort = 1234;
 private static InetAddress ip;
 private static String IP_Text;
 private static Socket s;
@@ -127,6 +127,7 @@ private void btn_SendClick(ActionEvent evt){
         try{
                 String text = TextSend.getText();
                 dos.writeUTF(text);
+		//dos.writeShort(5);
         } catch (IOException e) {
                 e.printStackTrace();
         }
@@ -157,15 +158,25 @@ private void btn_ConnectClick(ActionEvent evt){
 
                                         try{
                                                 // Read Message then send to JTextField
-                                                String msg;
+                                                String msg ="";
                                                 //while ((msg =(char) dis.read()) == '');
                                                 msg = dis.readLine();
-                                                System.out.print(msg);
-                                                AreaText.append("" + msg + "\n");
-                                                scrollPane.add(AreaText);
+						if (msg != null){
+							msg.trim();
+							msg.replace("null","");
+                                                	System.out.print(msg);
+							System.out.print(msg);
+                                                	AreaText.append("" + msg + "\n");
+                                                	//scrollPane.add(AreaText);
+						}
+						if (msg == null){
+							System.out.print("server died\n");
+							readMessage.stop();
+						}
                                         } catch (IOException e) {
                                                 e.printStackTrace();
                                         }
+				//System.out.print("out\n");
                                 }
                         }
                 });
