@@ -27,4 +27,14 @@ netinet/in.h
 -
 string.h
 -
+arpa/inet.h
+-
+errno.h
+-
+sys/types.h
+-
+sys/time.h
+-
+iostream
+-
 
